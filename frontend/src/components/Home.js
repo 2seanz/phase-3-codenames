@@ -11,10 +11,12 @@ import FormControl from 'react-bootstrap/FormControl'
 class Home extends Component {
 
     state = {
-        playerNum: 0,
-        players: [],
-        blueTeam: [],
-        redTeam: []
+        playerNum: 4,
+        players: ["Sean", "James", "Alex", "Joe"],
+        blueTeam: ["Alex", "Joe"],
+        redTeam: ["Sean", "James"],
+        redSpyMaster: [0, 0],
+        blueSpyMaster: [0, 0]
     }
 
     handleClick = (event,num) => {
@@ -50,6 +52,49 @@ class Home extends Component {
 
         this.setState({redTeam})
         this.setState({blueTeam})
+    }
+
+
+    variantName = (team, index) => {
+        if (team === "red" )
+           return this.state.redSpyMaster[index] == 0 ? "outline-" : ""
+
+        if (team === "blue" )
+           return this.state.blueSpyMaster[index] == 0 ? "outline-" : ""
+        // if what we clicked on is spymaster then return ""
+
+    }
+
+
+    selectSpyMaster = (e, index, team) => {
+        console.log(e.target.innerText)
+        console.log (index)
+        console.log (team)
+        this.setState({
+            redSpyMaster: Array(this.state.redTeam.length).fill(0)
+        })
+        this.setState(state => {
+            state.redSpyMaster[index] = 1
+            return state
+          })
+        //if name is clicked make it the spymaster
+        // if (this.state.redSpyMaster === 
+    }
+
+    displayBlueTeam = () => {
+        const team = "blue"
+        const blue = this.state.blueTeam.map((ele, index) => <div>
+        <Button variant={`${this.variantName(team, index)}primary`} onClick = {(e) => this.selectSpyMaster(e, index, team)}>{ele}</Button>{' '}
+        </div>)
+        return blue
+    }
+
+    displayRedTeam = () => {
+        const team = "red"
+        const red = this.state.redTeam.map((ele, index) => <div>
+        <Button variant={`${this.variantName(team, index)}danger`} onClick = {(e) => this.selectSpyMaster(e, index, team)}>{ele}</Button>{' '}
+        </div>)
+        return red
     }
 
     displayForm = () => {
@@ -116,6 +161,8 @@ class Home extends Component {
                     </Form>
                 </div>
                 <div>Team Sorting</div>
+                <div className = "d-flex flex-row justify-content-center"> {this.displayBlueTeam()} </div>
+                <div className = "d-flex flex-row justify-content-center"> {this.displayRedTeam()} </div>
                 <div>
                     <Button onClick={this.handleStart} variant="primary" size="lg" block>
                         Start
