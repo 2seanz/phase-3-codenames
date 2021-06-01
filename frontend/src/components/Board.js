@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Card from './Card'
+import KeyCard from './KeyCard'
 
 const allWords = ['ADAM','AFRICA','AGENT','AIR','ALEX','ALIEN','ALPS','AMAZON','AMBULANCE','AMERICA','AMY','ANGEL','ANTARCTICA','APPLE','ARM','ATLANTIS','AUSTRALIA','AZTEC','BACK','BALL','BAND','BANK','BAR','BARK','BAT']
 
@@ -22,8 +23,8 @@ class Board extends Component {
                 <div className="d-flex flex-column">
                     {Array(5).fill().map((el,index) => <div className="row">{Array(5).fill().map((el2,index2) => <Card word={allWords[randomWords[index*5 + index2]]}/>)}</div>)}
                 </div>
-                <div>
-
+                <div style={{width: "40vw", marginTop: '2%'}}>
+                    <KeyCard />
                 </div>
             </div>
         )
