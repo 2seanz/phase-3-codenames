@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
-    <div className="App d-flex align-items-center justify-content-center" style={{height: '100vh'}}>
+    <div className="App d-flex flex-column align-items-center justify-content-center" style={{height: '100vh'}}>
       <Home />
       <Board />
       <Credits />

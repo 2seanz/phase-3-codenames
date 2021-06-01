@@ -11,24 +11,64 @@ import FormControl from 'react-bootstrap/FormControl'
 class Home extends Component {
 
     state = {
-        playerName: 0
+        playerNum: 0,
+        players: [],
+        blueTeam: [],
+        redTeam: []
     }
 
     handleClick = (event,num) => {
         console.log(event.target)
         console.log(num)
-        this.setState({playerName: num})
+        this.setState({playerNum: num})
+        this.setState({players: Array(num).fill()})
+    }
+
+    handleFormChange = (event, index) => {
+        let myArray = this.state.players
+        myArray[index] = event.target.value     // we're sticking in whatever user types in the form and store it in state
+
+        this.setState({players: myArray})
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault()
+
+        const num = this.state.playerNum
+
+        // Sort names
+        console.log(this.state.players)
+        let redTeam = []
+        let blueTeam = []
+
+        this.state.players.map((el,index) => {
+            if(index%2 === 0)
+                redTeam.push(el)
+            if(index%2 === 1)
+                blueTeam.push(el)
+        })
+
+        this.setState({redTeam})
+        this.setState({blueTeam})
     }
 
     displayForm = () => {
         // console.log("we made it bishhh")
 
-         const ourForm = Array(this.state.playerName).fill().map((item, index) => (
+         const ourForm = Array(this.state.playerNum).fill().map((item, index) => (
             <Form.Group controlId="playerNames">                
-                <Form.Control type="name" placeholder={`Enter Name of Player ${index + 1}`} />
+                <Form.Control 
+                    type="name" 
+                    placeholder={`Enter Name of Player ${index + 1}`} 
+                    onChange={(event) => this.handleFormChange(event,index)}/>
             </Form.Group>
         ))
         return ourForm
+    }
+
+    handleStart = () => {
+        console.log('we made it')
+        // in the future make it so that this button opens the game component
     }
 
     render() {
@@ -69,14 +109,7 @@ class Home extends Component {
                     {/* <Dropdown.Divider /> */}
                     {/* <Dropdown.Item eventKey="4">Separated link</Dropdown.Item> */}
                     </DropdownButton>
-                    <Form>
-                        <FormControl 
-                            type='text'
-                            name='username' 
-                            placeholder='enter' 
-                            defaultValue={this.state.form.username}
-                            onChange={this.handleChange.bind(this)}
-                            />
+                    <Form onSubmit={(event)=>this.handleSubmit(event)}>
                         <Form.Label>Name</Form.Label>
                         {this.displayForm()}
                         <Button variant="primary" type="submit">Submit</Button>
@@ -84,7 +117,7 @@ class Home extends Component {
                 </div>
                 <div>Team Sorting</div>
                 <div>
-                    <Button variant="primary" size="lg" block>
+                    <Button onClick={this.handleStart} variant="primary" size="lg" block>
                         Start
                     </Button>
                 </div>
