@@ -36,13 +36,11 @@ class Home extends Component {
         return (
             <div>
                 <div>
-                    <Navbar bg="dark" expand="lg">
+                    <Navbar bg="light" expand="lg">
                         <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mr-auto">
-                        <Nav.Link href="#home">Home</Nav.Link>
-                        <Nav.Link href="#link">Link</Nav.Link>
                         <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                         <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                         <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
@@ -72,6 +70,13 @@ class Home extends Component {
                     {/* <Dropdown.Item eventKey="4">Separated link</Dropdown.Item> */}
                     </DropdownButton>
                     <Form>
+                        <FormControl 
+                            type='text'
+                            name='username' 
+                            placeholder='enter' 
+                            defaultValue={this.state.form.username}
+                            onChange={this.handleChange.bind(this)}
+                            />
                         <Form.Label>Name</Form.Label>
                         {this.displayForm()}
                         <Button variant="primary" type="submit">Submit</Button>
