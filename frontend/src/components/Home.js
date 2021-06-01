@@ -61,8 +61,6 @@ class Home extends Component {
 
         if (team === "blue" )
            return this.state.blueSpyMaster[index] == 0 ? "outline-" : ""
-        // if what we clicked on is spymaster then return ""
-
     }
 
 
@@ -70,13 +68,21 @@ class Home extends Component {
         console.log(e.target.innerText)
         console.log (index)
         console.log (team)
-        this.setState({
-            redSpyMaster: Array(this.state.redTeam.length).fill(0)
-        })
-        this.setState(state => {
-            state.redSpyMaster[index] = 1
-            return state
-          })
+        if(team == "red") {
+            this.setState({redSpyMaster: Array(this.state.redTeam.length).fill(0)})
+            this.setState(state => {
+                state.redSpyMaster[index] = 1
+                return state
+            })
+        }
+        if(team == "blue") {
+            this.setState({blueSpyMaster: Array(this.state.blueTeam.length).fill(0)})
+            this.setState(state => {
+                state.blueSpyMaster[index] = 1
+                return state
+            })
+        }
+        
         //if name is clicked make it the spymaster
         // if (this.state.redSpyMaster === 
     }
