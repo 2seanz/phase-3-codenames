@@ -12,9 +12,9 @@ class Home extends Component {
 
     state = {
         playerNum: 4,
-        players: ["Sean", "James", "Alex", "Joe"],
-        blueTeam: ["Alex", "Joe"],
-        redTeam: ["Sean", "James"],
+        players: [],
+        blueTeam: [],
+        redTeam: [],
         redSpyMaster: [0, 0],
         blueSpyMaster: [0, 0]
     }
