@@ -30,14 +30,27 @@ class Board extends Component {
 
     setTurn = () => {
        const turn = this.state.turn
+       const turnCards = []
        turn === "Red" ? this.setState({turn: "Blue"}) : this.setState({turn: "Red"})
        this.setState({guesses: 0})
+       this.setState({turnCards})
     }
 
     guessesLeft = (e) => {
         this.setState({
             guesses: e.target.innerText
         })
+    }
+
+    addScore = (index, num) => {
+        if (num == 1){
+            let blueTeamCards = this.state.blueTeamCards
+            blueTeamCards.push(index)
+        }
+        if (num == 2){
+            let redTeamCards = this.state.redTeamCards
+            redTeamCards.push(index)
+        }
     }
 
     // randomWords = () => Array(25).fill().map((el,index)=>index).sort( () => .5 - Math.random() )
@@ -60,7 +73,7 @@ class Board extends Component {
                     <Turn setTurn = {this.setTurn} guessesLeft={this.guessesLeft} state={this.state} keyCards={this.state.requiredCards}/>
                 </div>
                 <div className="d-flex flex-column" style={{marginBottom: '5%'}}>
-                    {Array(5).fill().map((el,index) => <div className="row">{Array(5).fill().map((el2,index2) => <Card addCardToTeam={this.addCardToTeam} setTurn = {this.setTurn} state={this.state} pizza={index*5 + index2} keyCards={this.state.requiredCards} word={allWords[this.state.randomWords[index*5 + index2]]}/>)}</div>)}
+                    {Array(5).fill().map((el,index) => <div className="row">{Array(5).fill().map((el2,index2) => <Card addScore={this.addScore} addCardToTeam={this.addCardToTeam} setTurn = {this.setTurn} state={this.state} pizza={index*5 + index2} keyCards={this.state.requiredCards} word={allWords[this.state.randomWords[index*5 + index2]]}/>)}</div>)}
                 </div>
                 <div style={{width: "40vw", margin: 'auto'}}>
                     <KeyCard keyCards={this.state.requiredCards}/>

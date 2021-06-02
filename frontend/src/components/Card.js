@@ -4,6 +4,9 @@ import React, { Component } from 'react'
 class Card extends Component {
 
     handleClick = (e) => {
+        const teamCode = this.props.keyCards[e.target.id]
+        const num = this.props.state.turn == "Red" ? 2 : 1
+
         if (this.props.state.guesses != 0){
             this.touchCard(e)
             // Switch turns after we've used up all guesses 
@@ -13,14 +16,23 @@ class Card extends Component {
                 this.props.setTurn()
             }
 
-            if (this.props.keyCards[e.target.id] === 3 ){
+            if (teamCode === 3 ){
                 const winner = this.props.state.turn === "Red" ? "Blue" : "Red"
                 alert(`${winner} Team Wins!`)
             }
-            
+            if (teamCode != num){
+                this.props.setTurn()
+            }
+            // tally the team score 
+            this.props.addScore(e.target.id, teamCode)
+            // if redteamcards == 9 or if blueteamcards == 8 then END GAME
+            if (this.props.state.redTeamCards.length == 9) {
+                alert("Red Team Wins!")
+            }
+            if (this.props.state.blueTeamCards == 8){
+                alert("Blue Team Wins!")
+            }
         }
-
-
     }
 
     touchCard = (e) => {
