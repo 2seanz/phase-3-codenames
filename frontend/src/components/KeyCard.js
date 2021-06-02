@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 
-const requiredCards = [0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,3].sort( () => .5 - Math.random() )
-
 export default class KeyCard extends Component {
 
     convertNumToColor = (num) => {
@@ -22,8 +20,8 @@ export default class KeyCard extends Component {
 
     render() {
         return (
-            <div className="d-flex flex-column justify-content-center">
-                {Array(5).fill().map((el,index) => <div className="row">{Array(5).fill().map((el2,index2) => <div className="col border border-dark">{this.convertNumToColor(requiredCards[index * 5 + index2])}</div>)}
+            <div className="d-flex flex-column justify-content-center key" style={{visibility: 'hidden'}}>
+                {Array(5).fill().map((el,index) => <div className="row">{Array(5).fill().map((el2,index2) => <div className="col border border-dark">{this.convertNumToColor(this.props.keyCards[index * 5 + index2])}</div>)}
                 </div>)}
             </div>
         )
