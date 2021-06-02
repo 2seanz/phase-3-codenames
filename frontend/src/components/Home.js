@@ -68,6 +68,7 @@ class Home extends Component {
         console.log(e.target.innerText)
         console.log (index)
         console.log (team)
+        
         if(team == "red") {
             this.setState({redSpyMaster: Array(this.state.redTeam.length).fill(0)})
             this.setState(state => {

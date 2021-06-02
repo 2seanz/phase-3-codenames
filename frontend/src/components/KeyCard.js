@@ -22,7 +22,7 @@ export default class KeyCard extends Component {
 
     render() {
         return (
-            <div className="d-flex flex-column">
+            <div className="d-flex flex-column justify-content-center">
                 {Array(5).fill().map((el,index) => <div className="row">{Array(5).fill().map((el2,index2) => <div className="col border border-dark">{this.convertNumToColor(requiredCards[index * 5 + index2])}</div>)}
                 </div>)}
             </div>

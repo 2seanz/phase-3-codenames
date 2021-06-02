@@ -19,11 +19,11 @@ class Board extends Component {
 
         const randomWords = this.randomWords()
         return (
-            <div style={{width: "60vw", marginTop: '2%'}}>
-                <div className="d-flex flex-column">
+            <div className = "d-flex flex-column" style={{width: "70vw", marginTop: '2%'}}>
+                <div className="d-flex flex-column" style={{marginBottom: '5%'}}>
                     {Array(5).fill().map((el,index) => <div className="row">{Array(5).fill().map((el2,index2) => <Card word={allWords[randomWords[index*5 + index2]]}/>)}</div>)}
                 </div>
-                <div style={{width: "40vw", marginTop: '2%'}}>
+                <div style={{width: "40vw", margin: 'auto'}}>
                     <KeyCard />
                 </div>
             </div>

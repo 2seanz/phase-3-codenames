@@ -6,4 +6,10 @@
   width: 70px;
   height: 70px;
   font-size: 12px;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+}
+
+.card:active {
+  transform: rotateY(180deg) scale(1.01);
 }
