@@ -4,10 +4,23 @@ import React, { Component } from 'react'
 class Card extends Component {
 
     handleClick = (e) => {
-        this.touchCard(e)
-        // Switch turns after we've used up all guesses 
-        //or when the assassin/wrong card has been clicked
-        this.props.addCardToTeam(e)
+        if (this.props.state.guesses != 0){
+            this.touchCard(e)
+            // Switch turns after we've used up all guesses 
+            //or when the assassin/wrong card has been clicked
+            this.props.addCardToTeam(e)
+            if (this.props.state.guesses == this.props.state.turnCards.length){
+                this.props.setTurn()
+            }
+
+            if (this.props.keyCards[e.target.id] === 3 ){
+                const winner = this.props.state.turn === "Red" ? "Blue" : "Red"
+                alert(`${winner} Team Wins!`)
+            }
+            
+        }
+
+
     }
 
     touchCard = (e) => {
