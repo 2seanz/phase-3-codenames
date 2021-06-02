@@ -28,6 +28,12 @@ class Board extends Component {
         this.setState({turnCards})
     }
 
+    setTurn = () => {
+       const turn = this.state.turn
+       turn === "Red" ? this.setState({turn: "Blue"}) : this.setState({turn: "Red"})
+       this.setState({guesses: 0})
+    }
+
     guessesLeft = (e) => {
         this.setState({
             guesses: e.target.innerText
@@ -51,10 +57,10 @@ class Board extends Component {
         return (
             <div className = "d-flex flex-column" style={{width: "70vw", marginTop: '2%'}}>
                 <div>
-                    <Turn guessesLeft={this.guessesLeft} state={this.state} keyCards={this.state.requiredCards}/>
+                    <Turn setTurn = {this.setTurn} guessesLeft={this.guessesLeft} state={this.state} keyCards={this.state.requiredCards}/>
                 </div>
                 <div className="d-flex flex-column" style={{marginBottom: '5%'}}>
-                    {Array(5).fill().map((el,index) => <div className="row">{Array(5).fill().map((el2,index2) => <Card addCardToTeam={this.addCardToTeam} pizza={index*5 + index2} keyCards={this.state.requiredCards} word={allWords[this.state.randomWords[index*5 + index2]]}/>)}</div>)}
+                    {Array(5).fill().map((el,index) => <div className="row">{Array(5).fill().map((el2,index2) => <Card addCardToTeam={this.addCardToTeam} setTurn = {this.setTurn} state={this.state} pizza={index*5 + index2} keyCards={this.state.requiredCards} word={allWords[this.state.randomWords[index*5 + index2]]}/>)}</div>)}
                 </div>
                 <div style={{width: "40vw", margin: 'auto'}}>
                     <KeyCard keyCards={this.state.requiredCards}/>
