@@ -1,6 +1,14 @@
 import React, { Component } from 'react'
 
+
 class Card extends Component {
+
+    handleClick = (e) => {
+        this.touchCard(e)
+        // Switch turns after we've used up all guesses 
+        //or when the assassin/wrong card has been clicked
+        this.props.addCardToTeam(e)
+    }
 
     touchCard = (e) => {
         const type = e.target.children.length
@@ -33,7 +41,7 @@ class Card extends Component {
 
     render() {
         return (
-            <div id={this.props.pizza} className="d-flex justify-content-center card col border border-2 border-dark" onClick={(e)=>this.touchCard(e)}>
+            <div id={this.props.pizza} className="d-flex justify-content-center card col border border-2 border-dark" onClick={(e)=>this.handleClick(e)}>
                 <div id={this.props.pizza} className="">{this.props.word}</div>
             </div>
         )

@@ -6,11 +6,35 @@ import Turn from './Turn'
 
 const allWords = ['ADAM','AFRICA','AGENT','AIR','ALEX','ALIEN','ALPS','AMAZON','AMBULANCE','AMERICA','AMY','ANGEL','ANTARCTICA','APPLE','ARM','ATLANTIS','AUSTRALIA','AZTEC','BACK','BALL','BAND','BANK','BAR','BARK','BAT']
 const requiredCards = [0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,3].sort( () => .5 - Math.random() )
+const randomWords = Array(25).fill().map((el,index)=>index).sort( () => .5 - Math.random() )
 
 class Board extends Component {
 
+    state = {
+        turn: "Red",
+        guesses: 0,
+        redTeamCards: [],
+        blueTeamCards: [],
+        requiredCards: requiredCards,
+        randomWords: randomWords,
+        turnCards: []
+    }
 
-    randomWords = () => Array(25).fill().map((el,index)=>index).sort( () => .5 - Math.random() )
+    addCardToTeam = (e) => {
+        let turnCards = this.state.turnCards
+        turnCards.push(allWords[randomWords[e.target.id]])
+        // this.props.keyCards[e.target.id]
+        // console.log(allWords[randomWords[e.target.id]])
+        this.setState({turnCards})
+    }
+
+    guessesLeft = (e) => {
+        this.setState({
+            guesses: e.target.innerText
+        })
+    }
+
+    // randomWords = () => Array(25).fill().map((el,index)=>index).sort( () => .5 - Math.random() )
 
     handleSuccessClick = (event) => {
         // This method will change visibility of button to "visible" when clicked
@@ -23,17 +47,17 @@ class Board extends Component {
 
     render() {
 
-        const randomWords = this.randomWords()
+        
         return (
             <div className = "d-flex flex-column" style={{width: "70vw", marginTop: '2%'}}>
                 <div>
-                    <Turn keyCards={requiredCards}/>
+                    <Turn guessesLeft={this.guessesLeft} state={this.state} keyCards={this.state.requiredCards}/>
                 </div>
                 <div className="d-flex flex-column" style={{marginBottom: '5%'}}>
-                    {Array(5).fill().map((el,index) => <div className="row">{Array(5).fill().map((el2,index2) => <Card pizza={index*5 + index2} keyCards={requiredCards} word={allWords[randomWords[index*5 + index2]]}/>)}</div>)}
+                    {Array(5).fill().map((el,index) => <div className="row">{Array(5).fill().map((el2,index2) => <Card addCardToTeam={this.addCardToTeam} pizza={index*5 + index2} keyCards={this.state.requiredCards} word={allWords[this.state.randomWords[index*5 + index2]]}/>)}</div>)}
                 </div>
                 <div style={{width: "40vw", margin: 'auto'}}>
-                    <KeyCard keyCards={requiredCards}/>
+                    <KeyCard keyCards={this.state.requiredCards}/>
                 </div>
                 <div style={{marginTop: '3%'}}>
                     <Button variant="success" onClick={(e) => this.handleSuccessClick(e)}>Spymaster Button</Button>
