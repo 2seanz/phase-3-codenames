@@ -34,7 +34,7 @@ class Card extends Component {
     render() {
         return (
             <div id={this.props.pizza} className="d-flex justify-content-center card col border border-2 border-dark" onClick={(e)=>this.touchCard(e)}>
-                <div className="">{this.props.word}</div>
+                <div id={this.props.pizza} className="">{this.props.word}</div>
             </div>
         )
     }
