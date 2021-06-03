@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form'
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import Dropdown from 'react-bootstrap/Dropdown'
-import Navbar from 'react-bootstrap/Navbar'
+import Image from 'react-bootstrap/Image'
 import { Link } from 'react-router-dom'
 
 class Home extends Component {
@@ -128,6 +128,9 @@ class Home extends Component {
         return (
             <div className="d-flex flex-column justify-content-center" style={{height: "100vh"}}>
                 <div style={{width: '60vw'}}>
+                    <div>
+                        <Image src="https://czechgames.com/for-press/codenames/codenames-14.jpg" rounded fluid />
+                    </div>
                     <div style={{marginTop: '1%', marginBottom: '1%'}}>
                         <DropdownButton key={variant} id={`dropdown-variants-${variant}`} variant={variant.toLowerCase()} title={"Number of players"}>                            
                             {[4,5,6,7,8,9,10].map(item => <Dropdown.Item key={item} eventKey={item.toString()} onClick={(event)=>this.handleClick(event,item)}>{item} Players</Dropdown.Item>)}

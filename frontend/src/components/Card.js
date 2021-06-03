@@ -32,7 +32,7 @@ class Card extends Component {
             if (this.props.state.redTeamCards.length == 9) {
                 this.props.changeState("Red")
             }
-            if (this.props.state.blueTeamCards == 8){
+            if (this.props.state.blueTeamCards.length == 8){
                 this.props.changeState("Blue")
             }
         }

@@ -3,7 +3,6 @@ import Card from './Card'
 import KeyCard from './KeyCard'
 import Button from 'react-bootstrap/Button'
 import Turn from './Turn'
-import { Link } from 'react-router-dom'
 
 // const allWords = ['ADAM','AFRICA','AGENT','AIR','ALEX','ALIEN','ALPS','AMAZON','AMBULANCE','AMERICA','AMY','ANGEL','ANTARCTICA','APPLE','ARM','ATLANTIS','AUSTRALIA','AZTEC','BACK','BALL','BAND','BANK','BAR','BARK','BAT']
 const requiredCards = [0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,3].sort( () => .5 - Math.random() )
@@ -31,6 +30,18 @@ class Board extends Component {
             console.log(allWords)
             this.setState({allWords})
         })
+
+        // testing UPDATE/Patch request to our server
+        // let id = 1
+        // let team = 1
+        // const patchObj = {
+        //     method: "PATCH",
+        //     headers: {"Content-Type": "application/json"},
+        //     body: JSON.stringify({team_id: team})
+        // }
+        // fetch(`http://localhost:9292/words/${id}`, patchObj)
+        //     .then(res => res.json())
+        //     .then(data => console.log(data))
     }
 
     addCardToTeam = (e) => {
