@@ -17,7 +17,7 @@ function App() {
 
   return (
       <div className="App d-flex flex-column align-items-center justify-content-center" style={{/*height: '200vh'*/}}>
-        <Navbar style={{width: '100%'}}><Link to='/'>CODENAMES</Link></Navbar>
+        <Navbar bg="secondary" style={{width: '100%'}}><Link className='text-warning' to='/'>CODENAMES</Link></Navbar>
         <Switch>
           <Route exact path='/' component={Home}/>
           <Route path='/game-board'>
