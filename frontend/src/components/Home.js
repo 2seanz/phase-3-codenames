@@ -126,12 +126,8 @@ class Home extends Component {
     render() {
         const variant = "Info"
         return (
-            <div>
+            <div className="d-flex flex-column justify-content-center" style={{height: "100vh"}}>
                 <div style={{width: '60vw'}}>
-                    <Navbar bg='secondary' expand="lg" className="rounded">
-                        <Navbar.Brand style={{fontWeight: 'bold'}} href="#home">CODENAMES</Navbar.Brand>
-                        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                    </Navbar>
                     <div style={{marginTop: '1%', marginBottom: '1%'}}>
                         <DropdownButton key={variant} id={`dropdown-variants-${variant}`} variant={variant.toLowerCase()} title={"Number of players"}>                            
                             {[4,5,6,7,8,9,10].map(item => <Dropdown.Item key={item} eventKey={item.toString()} onClick={(event)=>this.handleClick(event,item)}>{item} Players</Dropdown.Item>)}
