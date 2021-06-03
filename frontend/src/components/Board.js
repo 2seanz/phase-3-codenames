@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button'
 import Turn from './Turn'
 import { Link } from 'react-router-dom'
 
-const allWords = ['ADAM','AFRICA','AGENT','AIR','ALEX','ALIEN','ALPS','AMAZON','AMBULANCE','AMERICA','AMY','ANGEL','ANTARCTICA','APPLE','ARM','ATLANTIS','AUSTRALIA','AZTEC','BACK','BALL','BAND','BANK','BAR','BARK','BAT']
+// const allWords = ['ADAM','AFRICA','AGENT','AIR','ALEX','ALIEN','ALPS','AMAZON','AMBULANCE','AMERICA','AMY','ANGEL','ANTARCTICA','APPLE','ARM','ATLANTIS','AUSTRALIA','AZTEC','BACK','BALL','BAND','BANK','BAR','BARK','BAT']
 const requiredCards = [0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,3].sort( () => .5 - Math.random() )
 const randomWords = Array(25).fill().map((el,index)=>index).sort( () => .5 - Math.random() )
 
@@ -18,22 +18,24 @@ class Board extends Component {
         blueTeamCards: [],
         requiredCards: requiredCards,
         randomWords: randomWords,
-        turnCards: []
+        turnCards: [],
+        allWords: ['ADAM','AFRICA','AGENT','AIR','ALEX','ALIEN','ALPS','AMAZON','AMBULANCE','AMERICA','AMY','ANGEL','ANTARCTICA','APPLE','ARM','ATLANTIS','AUSTRALIA','AZTEC','BACK','BALL','BAND','BANK','BAR','BARK','BAT']
     }
 
     componentDidMount(){
-        let arr = []
+        let allWords = []
         fetch('http://localhost:9292/words/')
         .then(res => res.json())
-        .then(data => data.map((pizza) => {
-            arr.push(pizza.word)
-        }))
-        console.log(arr)
+        .then(data => {
+            data.map((pizza) => {allWords.push(pizza.word)})
+            console.log(allWords)
+            this.setState({allWords})
+        })
     }
 
     addCardToTeam = (e) => {
         let turnCards = this.state.turnCards
-        turnCards.push(allWords[randomWords[e.target.id]])
+        turnCards.push(this.state.allWords[randomWords[e.target.id]])
         // this.props.keyCards[e.target.id]
         // console.log(allWords[randomWords[e.target.id]])
         this.setState({turnCards})
@@ -84,7 +86,7 @@ class Board extends Component {
                     <Turn setTurn = {this.setTurn} guessesLeft={this.guessesLeft} state={this.state} keyCards={this.state.requiredCards}/>
                 </div>
                 <div className="d-flex flex-column" style={{marginBottom: '5%'}}>
-                    {Array(5).fill().map((el,index) => <div className="row">{Array(5).fill().map((el2,index2) => <Card winner={this.props.state} changeState={this.props.changeState} addScore={this.addScore} addCardToTeam={this.addCardToTeam} setTurn = {this.setTurn} state={this.state} pizza={index*5 + index2} keyCards={this.state.requiredCards} word={allWords[this.state.randomWords[index*5 + index2]]}/>)}</div>)}
+                    {Array(5).fill().map((el,index) => <div className="row">{Array(5).fill().map((el2,index2) => <Card winner={this.props.state} changeState={this.props.changeState} addScore={this.addScore} addCardToTeam={this.addCardToTeam} setTurn = {this.setTurn} state={this.state} pizza={index*5 + index2} keyCards={this.state.requiredCards} word={this.state.allWords[this.state.randomWords[index*5 + index2]]}/>)}</div>)}
                 </div>
                 <div style={{marginTop: '3%'}}>
                     <Button variant="success" onClick={(e) => this.handleSuccessClick(e)}>Spymaster Button</Button>
