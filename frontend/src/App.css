@@ -1,10 +1,12 @@
 .App {
   text-align: center;
+  background: rgb(247,50,26);
+  background: linear-gradient(90deg, rgba(247,50,26,1) 1%, rgba(200,118,20,1) 44%, rgba(147,0,255,1) 100%);
 }
 
 .card {
   width: 70px;
-  height: 70px;
+  height: 90px;
   font-size: 12px;
   transition: transform 1s;
   transform-style: preserve-3d;
@@ -13,5 +15,9 @@
 .card:active {
   transform: rotateY(180deg) scale(1.01);
 }
+
+/* .card.key {
+  background: '343a40'
+} */
 
 
