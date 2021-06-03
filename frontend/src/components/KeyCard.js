@@ -21,7 +21,7 @@ export default class KeyCard extends Component {
     render() {
         return (
             <div className="d-flex flex-column justify-content-center key" style={{visibility: 'hidden'}}>
-                {Array(5).fill().map((el,index) => <div className="row">{Array(5).fill().map((el2,index2) => <div style={{margin: '1%'}} className="col card border border-dark justify-content-center">{this.convertNumToColor(this.props.keyCards[index * 5 + index2])}</div>)}</div>)}
+                {Array(5).fill().map((el,index) => <div className="row">{Array(5).fill().map((el2,index2) => <div style={{margin: '1%'}} className="col card key border border-dark justify-content-center">{this.convertNumToColor(this.props.keyCards[index * 5 + index2])}</div>)}</div>)}
             </div>
         )
     }
