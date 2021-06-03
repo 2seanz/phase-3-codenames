@@ -3,8 +3,9 @@ import Home from './components/Home'
 import Board from './components/Board'
 import Credits from './components/Credits'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, Link } from 'react-router-dom'
 import React, { useState } from 'react';
+import Navbar from 'react-bootstrap/Navbar';
 
 
 function App() {
@@ -15,7 +16,8 @@ function App() {
   }
 
   return (
-      <div className="App d-flex flex-column align-items-center justify-content-center" style={{height: '200vh'}}>
+      <div className="App d-flex flex-column align-items-center justify-content-center" style={{/*height: '200vh'*/}}>
+        <Navbar style={{width: '100%'}}><Link to='/'>CODENAMES</Link></Navbar>
         <Switch>
           <Route exact path='/' component={Home}/>
           <Route path='/game-board'>

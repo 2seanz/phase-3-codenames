@@ -79,7 +79,7 @@ class Board extends Component {
                 <div style={{marginTop: '3%'}}>
                     <Button variant="success" onClick={(e) => this.handleSuccessClick(e)}>Spymaster Button</Button>
                 </div>
-                <div style={{width: "40vw", margin: 'auto'}}> {/* backgroundColor: '#343a40'*/}
+                <div style={{width: "40vw", margin: 'auto', marginBottom: '5%'}}> {/* backgroundColor: '#343a40'*/}
                     <KeyCard keyCards={this.state.requiredCards}/>
                 </div>
                 </div>

@@ -20,4 +20,14 @@
   background: '343a40'
 } */
 
+.navbar {
+  font-size: 16pt;
+  font-weight: bold;
+  font-family: "Arial", sans-serif;
+  letter-spacing: 1px;
+  color: #1b4668;
+  padding: 10px;
+  background-color: white;
+}
+
 
