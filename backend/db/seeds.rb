@@ -4,12 +4,8 @@ Team.destroy_all
 Team.reset_pk_sequence
 Word.reset_pk_sequence
 
-
 Team.create(team_color: "Red")
 Team.create(team_color: "Blue")
-
-
-
 
 words_array = ["ADAM",
 "AFRICA",
@@ -430,7 +426,7 @@ words_array = ["ADAM",
 
 
 25.times do
-sample_word = Word.create(word: words_array[rand(1..415)])
+sample_word = Word.create(word: words_array.sample)
 end
 
 binding.pry
