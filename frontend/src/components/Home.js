@@ -4,6 +4,7 @@ import Form from 'react-bootstrap/Form'
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import Dropdown from 'react-bootstrap/Dropdown'
 import Navbar from 'react-bootstrap/Navbar'
+import { Link } from 'react-router-dom'
 
 class Home extends Component {
 
@@ -148,9 +149,11 @@ class Home extends Component {
                     <div className="d-flex flex-row justify-content-center"> {this.displayRedTeam()} </div>
                 </div>
 
-                <div style={{width: '50%', margin: 'auto'}}>
-                    <Button onClick={this.handleStart} style={{backgroundColor: "#ffbc00", color: '#343a40'}} size="lg" block>Start</Button>
-                </div>
+                <Link to='/game-board'>
+                    <div style={{width: '50%', margin: 'auto'}}>
+                        <Button onClick={this.handleStart} style={{backgroundColor: "#ffbc00", color: '#343a40'}} size="lg" block>Start</Button>
+                    </div>
+                </Link>
                 
             </div>
         )
