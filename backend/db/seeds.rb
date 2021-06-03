@@ -1,4 +1,16 @@
 require 'pry'
+Word.destroy_all
+Team.destroy_all
+Team.reset_pk_sequence
+Word.reset_pk_sequence
+
+
+Team.create(team_color: "Red")
+Team.create(team_color: "Blue")
+
+
+
+
 words_array = ["ADAM",
 "AFRICA",
 "AGENT",

@@ -21,6 +21,16 @@ class Board extends Component {
         turnCards: []
     }
 
+    componentDidMount(){
+        let arr = []
+        fetch('http://localhost:9292/words/')
+        .then(res => res.json())
+        .then(data => data.map((pizza) => {
+            arr.push(pizza.word)
+        }))
+        console.log(arr)
+    }
+
     addCardToTeam = (e) => {
         let turnCards = this.state.turnCards
         turnCards.push(allWords[randomWords[e.target.id]])
