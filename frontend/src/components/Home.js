@@ -11,7 +11,7 @@ import FormControl from 'react-bootstrap/FormControl'
 class Home extends Component {
 
     state = {
-        playerNum: 4,
+        playerNum: 2,
         players: [],
         blueTeam: [],
         redTeam: [],
@@ -127,24 +127,11 @@ class Home extends Component {
         const variant = "Info"
         return (
             <div>
-                <div>
+                <div style={{width: '60vw'}}>
                     <Navbar bg="light" expand="lg">
-                        <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+                        <Navbar.Brand style={{fontWeight: 'bold'}} href="#home">Codenames</Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                        <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav className="mr-auto">
-                        <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                        <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                        <NavDropdown.Divider />
-                        <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-                        </NavDropdown>
-                        </Nav>
-                        <Form inline>
-                        <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                        <Button variant="outline-success">Search</Button>
-                        </Form>
+                        <Navbar.Collapse id="basic-navbar-nav">                    
                         </Navbar.Collapse>
                     </Navbar>
                     <DropdownButton
@@ -161,11 +148,13 @@ class Home extends Component {
                     {/* <Dropdown.Divider /> */}
                     {/* <Dropdown.Item eventKey="4">Separated link</Dropdown.Item> */}
                     </DropdownButton>
-                    <Form onSubmit={(event)=>this.handleSubmit(event)}>
-                        <Form.Label>Name</Form.Label>
-                        {this.displayForm()}
-                        <Button variant="primary" type="submit">Submit</Button>
-                    </Form>
+                    <div style={{width: '60%', justifyContent: 'center', display: 'flex', margin: 'auto'}}>
+                        <Form onSubmit={(event)=>this.handleSubmit(event)}>
+                            <Form.Label>Name</Form.Label>
+                            {this.displayForm()}
+                            <Button variant="primary" type="submit">Submit</Button>
+                        </Form>
+                    </div>
                 </div>
                 <div>Team Sorting</div>
                 <div className = "d-flex flex-row justify-content-center"> {this.displayBlueTeam()} </div>

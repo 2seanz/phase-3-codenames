@@ -66,7 +66,7 @@ class Card extends Component {
 
     render() {
         return (
-            <div id={this.props.pizza} className="d-flex justify-content-center card col border border-2 border-dark" onClick={(e)=>this.handleClick(e)}>
+            <div id={this.props.pizza} style={{margin: '1%'}} className="d-flex justify-content-center card col border border-2 border-dark" onClick={(e)=>this.handleClick(e)}>
                 <div id={this.props.pizza} className="">{this.props.word}</div>
             </div>
         )
