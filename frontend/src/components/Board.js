@@ -75,7 +75,7 @@ class Board extends Component {
                 <div className="d-flex flex-column" style={{marginBottom: '5%'}}>
                     {Array(5).fill().map((el,index) => <div className="row">{Array(5).fill().map((el2,index2) => <Card addScore={this.addScore} addCardToTeam={this.addCardToTeam} setTurn = {this.setTurn} state={this.state} pizza={index*5 + index2} keyCards={this.state.requiredCards} word={allWords[this.state.randomWords[index*5 + index2]]}/>)}</div>)}
                 </div>
-                <div style={{width: "40vw", margin: 'auto'}}>
+                <div style={{width: "40vw", margin: 'auto'}}> {/* backgroundColor: '#343a40'*/}
                     <KeyCard keyCards={this.state.requiredCards}/>
                 </div>
                 <div style={{marginTop: '3%'}}>
