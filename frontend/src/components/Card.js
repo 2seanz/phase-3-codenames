@@ -6,10 +6,6 @@ import { Link, Redirect } from 'react-router-dom'
 
 class Card extends Component {
 
-    state = {
-        winner: ""
-    }
-
     handleClick = (e) => {
         const teamCode = this.props.keyCards[e.target.id]
         const num = this.props.state.turn == "Red" ? 2 : 1
@@ -25,7 +21,7 @@ class Card extends Component {
 
             if (teamCode === 3 ){
                 const winner = this.props.state.turn === "Red" ? "Blue" : "Red"
-                this.setState({winner})
+                this.props.changeState(winner)
             }
             if (teamCode != num){
                 this.props.setTurn()
@@ -34,10 +30,10 @@ class Card extends Component {
             this.props.addScore(e.target.id, teamCode)
             // if redteamcards == 9 or if blueteamcards == 8 then END GAME
             if (this.props.state.redTeamCards.length == 9) {
-                this.setState({winner: "Red"})
+                this.props.changeState("Red")
             }
             if (this.props.state.blueTeamCards == 8){
-                this.setState({winner: "Blue"})
+                this.props.changeState("Blue")
             }
         }
     }
@@ -75,11 +71,10 @@ class Card extends Component {
 
         return (
             <React.Fragment>
-                {this.state.winner== "" ?
+                {this.props.winner == 0 ?
                         <div id={this.props.pizza} style={{margin: '1%'}} className="d-flex justify-content-center card col border border-2 border-dark" onClick={(e)=>this.handleClick(e)}>
                             <div id={this.props.pizza} className="">{this.props.word}</div>
-                        </div> : "hey"
-                        // <Redirect to = "/end-screen" />
+                        </div> : <Redirect to = "/end-screen" />
                 }
             </React.Fragment>
         )
