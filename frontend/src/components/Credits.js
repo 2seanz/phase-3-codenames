@@ -4,7 +4,7 @@ class Credits extends Component {
     render() {
         return (
             <div>
-                
+                "TEAM WINS"
             </div>
         )
     }

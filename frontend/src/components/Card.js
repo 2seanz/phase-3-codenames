@@ -1,7 +1,14 @@
 import React, { Component } from 'react'
+import { Link, Redirect } from 'react-router-dom'
+
+
 
 
 class Card extends Component {
+
+    state = {
+        winner: ""
+    }
 
     handleClick = (e) => {
         const teamCode = this.props.keyCards[e.target.id]
@@ -18,7 +25,7 @@ class Card extends Component {
 
             if (teamCode === 3 ){
                 const winner = this.props.state.turn === "Red" ? "Blue" : "Red"
-                alert(`${winner} Team Wins!`)
+                this.setState({winner})
             }
             if (teamCode != num){
                 this.props.setTurn()
@@ -27,10 +34,10 @@ class Card extends Component {
             this.props.addScore(e.target.id, teamCode)
             // if redteamcards == 9 or if blueteamcards == 8 then END GAME
             if (this.props.state.redTeamCards.length == 9) {
-                alert("Red Team Wins!")
+                this.setState({winner: "Red"})
             }
             if (this.props.state.blueTeamCards == 8){
-                alert("Blue Team Wins!")
+                this.setState({winner: "Blue"})
             }
         }
     }
@@ -65,12 +72,21 @@ class Card extends Component {
     }
 
     render() {
+
         return (
-            <div id={this.props.pizza} style={{margin: '1%'}} className="d-flex justify-content-center card col border border-2 border-dark" onClick={(e)=>this.handleClick(e)}>
-                <div id={this.props.pizza} className="">{this.props.word}</div>
-            </div>
+            <React.Fragment>
+                {this.state.winner== "" ?
+                        <div id={this.props.pizza} style={{margin: '1%'}} className="d-flex justify-content-center card col border border-2 border-dark" onClick={(e)=>this.handleClick(e)}>
+                            <div id={this.props.pizza} className="">{this.props.word}</div>
+                        </div> : "hey"
+                        // <Redirect to = "/end-screen" />
+                }
+            </React.Fragment>
         )
     }
 }
 
 export default Card
+
+
+

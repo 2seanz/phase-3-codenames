@@ -3,6 +3,7 @@ import Card from './Card'
 import KeyCard from './KeyCard'
 import Button from 'react-bootstrap/Button'
 import Turn from './Turn'
+import { Link } from 'react-router-dom'
 
 const allWords = ['ADAM','AFRICA','AGENT','AIR','ALEX','ALIEN','ALPS','AMAZON','AMBULANCE','AMERICA','AMY','ANGEL','ANTARCTICA','APPLE','ARM','ATLANTIS','AUSTRALIA','AZTEC','BACK','BALL','BAND','BANK','BAR','BARK','BAT']
 const requiredCards = [0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,3].sort( () => .5 - Math.random() )
@@ -75,13 +76,13 @@ class Board extends Component {
                 <div className="d-flex flex-column" style={{marginBottom: '5%'}}>
                     {Array(5).fill().map((el,index) => <div className="row">{Array(5).fill().map((el2,index2) => <Card addScore={this.addScore} addCardToTeam={this.addCardToTeam} setTurn = {this.setTurn} state={this.state} pizza={index*5 + index2} keyCards={this.state.requiredCards} word={allWords[this.state.randomWords[index*5 + index2]]}/>)}</div>)}
                 </div>
-                <div style={{width: "40vw", margin: 'auto'}}> {/* backgroundColor: '#343a40'*/}
-                    <KeyCard keyCards={this.state.requiredCards}/>
-                </div>
                 <div style={{marginTop: '3%'}}>
                     <Button variant="success" onClick={(e) => this.handleSuccessClick(e)}>Spymaster Button</Button>
                 </div>
-            </div>
+                <div style={{width: "40vw", margin: 'auto'}}> {/* backgroundColor: '#343a40'*/}
+                    <KeyCard keyCards={this.state.requiredCards}/>
+                </div>
+                </div>
         )
     }
 }
