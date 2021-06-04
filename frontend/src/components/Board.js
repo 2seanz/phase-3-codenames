@@ -98,7 +98,9 @@ class Board extends Component {
         
         return (
             <div className = "d-flex flex-column" style={{width: "70vw", marginTop: '2%'}}>
-                <button onClick={() => this.playSound("PinkSweat-AtMyWorstfeatKehlani.mp3")}>Play</button>
+                <div style={{width:'100%', marginBottom: '5%'}}>
+                    <button onClick={() => this.playSound("https://github.com/2seanz/phase-3-codenames/blob/main/frontend/src/components/PinkSweat-AtMyWorstfeatKehlani.mp3?raw=true")}>Play Background Music</button>
+                </div>
                 <div>
                     <Turn setTurn = {this.setTurn} guessesLeft={this.guessesLeft} state={this.state} keyCards={this.state.requiredCards}/>
                 </div>
