@@ -4,8 +4,8 @@ Team.destroy_all
 Team.reset_pk_sequence
 Word.reset_pk_sequence
 
-Team.create(team_color: "Red")
 Team.create(team_color: "Blue")
+Team.create(team_color: "Red")
 
 words_array = ["ADAM",
 "AFRICA",

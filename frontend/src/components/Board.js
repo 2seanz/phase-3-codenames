@@ -30,18 +30,6 @@ class Board extends Component {
             console.log(allWords)
             this.setState({allWords})
         })
-
-        // testing UPDATE/Patch request to our server
-        // let id = 1
-        // let team = 1
-        // const patchObj = {
-        //     method: "PATCH",
-        //     headers: {"Content-Type": "application/json"},
-        //     body: JSON.stringify({team_id: team})
-        // }
-        // fetch(`http://localhost:9292/words/${id}`, patchObj)
-        //     .then(res => res.json())
-        //     .then(data => console.log(data))
     }
 
     addCardToTeam = (e) => {
@@ -67,14 +55,30 @@ class Board extends Component {
     }
 
     addScore = (index, num) => {
+
+        // allWords.map()
         if (num == 1){
             let blueTeamCards = this.state.blueTeamCards
             blueTeamCards.push(index)
+            this.updateBackend(this.state.randomWords[index]+1, num)
         }
         if (num == 2){
             let redTeamCards = this.state.redTeamCards
             redTeamCards.push(index)
+            this.updateBackend(this.state.randomWords[index]+1, num)
         }
+    }
+
+    updateBackend = (id,team) => {
+        // testing UPDATE/Patch request to our server
+        const patchObj = {
+            method: "PATCH",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({team_id: team})
+        }
+        fetch(`http://localhost:9292/words/${id}`, patchObj)
+            .then(res => res.json())
+            .then(data => console.log(data))
     }
 
     // randomWords = () => Array(25).fill().map((el,index)=>index).sort( () => .5 - Math.random() )
