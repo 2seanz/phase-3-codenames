@@ -88,11 +88,17 @@ class Board extends Component {
         document.querySelector('.key').style.visibility = targetVisibility
     }
 
+    playSound = (url) => {
+        const audio = new Audio(url);
+        audio.play();
+    }
+
     render() {
 
         
         return (
             <div className = "d-flex flex-column" style={{width: "70vw", marginTop: '2%'}}>
+                <button onClick={() => this.playSound("PinkSweat-AtMyWorstfeatKehlani.mp3")}>Play</button>
                 <div>
                     <Turn setTurn = {this.setTurn} guessesLeft={this.guessesLeft} state={this.state} keyCards={this.state.requiredCards}/>
                 </div>
