@@ -8,7 +8,6 @@ class Application
       return [200, { 'Content-Type' => 'application/json' }, [ {:message => "test response!"}.to_json ]]
 
     elsif req.path.match(/words/) && req.get?
-      rake db:seed
       return [200, { 'Content-Type' => 'application/json' }, [ Word.all.to_json ]]
 
     elsif req.path.match(/team/) && req.get?
